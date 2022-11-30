@@ -12,3 +12,22 @@ sql = (
     "GROUP BY p.first_name, p.last_name, p.email "
     "ORDER BY total DESC LIMIT 3;"
     )
+
+'''
+The below sql function is used to find the 3 cheapest flats for each city in a table of flats containing their id, 
+city and price. We want to create a new table 
+'''
+
+sql = (
+    "SELECT id, city, price "
+    "FROM "
+    "( SELECT id, city, price, "
+    "        ROW_NUMBER() OVER (PARTITION BY name "
+    "                            ORDER BY value ASC "
+    "                            ) "
+    "            AS rn "
+    "    FROM flats "
+    ") tmp "
+    "WHERE rn <= 3 "
+    "ORDER BY city; " 
+)

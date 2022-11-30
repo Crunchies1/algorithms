@@ -17,10 +17,12 @@ def mergeSort(arr):
  
         # Sorting the second half
         mergeSort(R)
+
+        # We are effectively deconstructing the array recursively until we get blocks of size 1
  
         i = j = k = 0
  
-        # Copy data to temp arrays L[] and R[]
+        # Sorting the sub arrays as we remerge 
         while i < len(L) and j < len(R):
             if L[i] <= R[j]:
                 arr[k] = L[i]
